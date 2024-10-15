@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[\App\Http\Controllers\frondend\HomepageController::class, 'index']);
+Route::get('about',[\App\Http\Controllers\frondend\AboutController::class, 'index']);
+Route::get('melayani',[\App\Http\Controllers\frondend\MelayaniController::class, 'index']);
+Route::get('melayani/{slug}',[\App\Http\Controllers\frondend\MelayaniController::class, 'show']);
+
+
+
+
+
 
 Auth::routes();
 

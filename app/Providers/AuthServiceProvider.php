@@ -37,11 +37,20 @@ class AuthServiceProvider extends ServiceProvider
                 }
             }
 
-            foreach ($permissionArray as $title => $roles) {
-                Gate::define($title, function (User $user) use ($roles) {
-                    return count(array_intersect($user->roles->pluck('id')->toArray(), $roles));
-                });
-            }
+           // Definisikan $permissionArray sebelum digunakan
+$permissionArray = [
+    'view' => [1, 2, 3],
+    'edit' => [2, 3],
+    'delete' => [3],
+];
+
+// Kemudian gunakan dalam foreach
+foreach ($permissionArray as $title => $roles) {
+    Gate::define($title, function (User $user) use ($roles) {
+        return count(array_intersect($user->roles->pluck('id')->toArray(), $roles));
+    });
+}
+
         }
     }
 }
